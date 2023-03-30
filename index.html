@@ -49,7 +49,13 @@
         repos.forEach((repo) => {
           if (repo.name !== pagesRepoName) {
             const repoName = document.createElement("h3");
-            repoName.innerText = repo.name;
+            const repoLink = document.createElement("a");
+            
+            repoLink.href = repo.html_url;
+            repoLink.innerText = repo.name;
+            repoLink.style.textDecoration = "none";
+            repoLink.style.color = "#008B8B";
+            repoName.appendChild(repoLink);
             projectsList.appendChild(repoName);
   
             const repoDescription = document.createElement("p");
