@@ -41,18 +41,21 @@
 </body>
 <script>
     const projectsList = document.getElementById("projects-list");
+    const pagesRepoName = "llorella.github.io"; 
   
     fetch("https://api.github.com/users/llorella/repos")
       .then((response) => response.json())
       .then((repos) => {
         repos.forEach((repo) => {
-          const repoName = document.createElement("h3");
-          repoName.innerText = repo.name;
-          projectsList.appendChild(repoName);
+          if (repo.name !== pagesRepoName) {
+            const repoName = document.createElement("h3");
+            repoName.innerText = repo.name;
+            projectsList.appendChild(repoName);
   
-          const repoDescription = document.createElement("p");
-          repoDescription.innerText = repo.description || "No description provided.";
-          projectsList.appendChild(repoDescription);
+            const repoDescription = document.createElement("p");
+            repoDescription.innerText = repo.description || "No description provided.";
+            projectsList.appendChild(repoDescription);
+          }
         });
       })
       .catch((error) => {
