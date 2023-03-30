@@ -1,0 +1,41 @@
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 0;
+    background-color: #282828;
+    color: #f0f0f0;
+}
+
+header {
+    background-color: #0079c1;
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: 4px solid #4ab4f7;
+}
+
+main {
+    padding: 2rem;
+}
+
+button {
+    font-family: 'Press Start 2P', cursive;
+    padding: 4px 12px;
+    background-color: #4ab4f7;
+    color: #282828;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0079c1;
+}
+
+footer {
+    background-color: #0079c1;
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 4px solid #4ab4f7;
+}
