@@ -7,66 +7,76 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            color: #333;
             margin: 0;
             padding: 0;
-            background-color: white;
-            color: black;
         }
         header {
-            background-color: black;
-            color: white;
+            background-color: #333;
+            color: #fff;
             padding: 40px;
             text-align: center;
         }
-        h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-        nav {
-            background-color: white;
-            padding: 20px;
-            text-align: center;
-        }
         nav ul {
-            list-style-type: none;
-            margin: 0;
+            list-style: none;
             padding: 0;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 10px 0;
         }
         nav ul li {
             display: inline;
             margin: 0 15px;
         }
         nav ul li a {
-            color: black;
+            color: #333;
             text-decoration: none;
-            font-size: 18px;
+            font-weight: bold;
         }
         main {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 20px auto;
             padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         section {
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
         h2 {
             font-size: 24px;
-            border-bottom: 2px solid black;
-            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+            margin-bottom: 20px;
         }
-        pre {
-            background-color: #f4f4f4;
+        pre, code {
+            background-color: #eee;
             padding: 10px;
-            overflow-x: auto;
-        }
-        code {
-            font-family: 'Courier New', monospace;
+            display: block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         footer {
-            background-color: black;
-            color: white;
+            background-color: #333;
+            color: #fff;
             padding: 20px;
             text-align: center;
+        }
+        .project-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .project-card h3 {
+            margin-top: 0;
+        }
+        .project-language {
+            background-color: #f0f0f0;
+            border-left: 3px solid #333;
+            padding: 5px;
         }
     </style>
 </head>
@@ -94,49 +104,53 @@
             <h2>Contact</h2>
             <p>If you'd like to get in touch, feel free to email me at <a href="mailto:lucianolauro77@gmail.com">lucianolauro77@gmail.com</a>.</p>
         </section>
+        <section id="last-updated">
+            <h2>Last Updated</h2>
+            <p id="update-time">Last updated on: 2024-04-05 21:27:44</p>
+            <h3>Bash Command Used for Update:</h3>
+            <pre><code># Replace this with your actual bash command(s)
+        # Example placeholder:
+        git pull origin master
+        </code></pre>
+        </section>
     </main>
     <footer>
         &copy; 2023 Luciano Orellana. All rights reserved.
     </footer>
     <script>
         const projectsList = document.getElementById("projects-list");
-        const pagesRepoName = "llorella.github.io";
 
         fetch("https://api.github.com/users/llorella/repos")
             .then((response) => response.json())
             .then((repos) => {
                 repos.forEach((repo) => {
-                    if (repo.name !== pagesRepoName) {
-                        const repoCard = document.createElement("div");
-                        repoCard.style.marginBottom = "30px";
+                    const repoCard = document.createElement("div");
+                    repoCard.classList.add("project-card");
 
-                        const repoName = document.createElement("h3");
-                        const repoLink = document.createElement("a");
+                    const repoName = document.createElement("h3");
+                    const repoLink = document.createElement("a");
 
-                        repoLink.href = repo.html_url;
-                        repoLink.innerText = repo.name;
-                        repoLink.style.textDecoration = "none";
-                        repoLink.style.color = "black";
-                        repoName.appendChild(repoLink);
-                        repoCard.appendChild(repoName);
+                    repoLink.href = repo.html_url;
+                    repoLink.innerText = repo.name;
+                    repoLink.style.color = "#333";
+                    repoName.appendChild(repoLink);
+                    repoCard.appendChild(repoName);
 
-                        const repoDescription = document.createElement("p");
-                        repoDescription.innerText = repo.description || "No description provided.";
-                        repoCard.appendChild(repoDescription);
+                    const repoDescription = document.createElement("p");
+                    repoDescription.innerText = repo.description || "No description provided.";
+                    repoCard.appendChild(repoDescription);
 
-                        const repoLanguage = document.createElement("pre");
-                        const languageCode = document.createElement("code");
-                        languageCode.innerText = `Language: ${repo.language || "Not specified"}`;
-                        repoLanguage.appendChild(languageCode);
-                        repoCard.appendChild(repoLanguage);
+                    const repoLanguage = document.createElement("div");
+                    repoLanguage.classList.add("project-language");
+                    repoLanguage.innerText = `Language: ${repo.language || "Not specified"}`;
+                    repoCard.appendChild(repoLanguage);
 
-                        projectsList.appendChild(repoCard);
-                    }
+                    projectsList.appendChild(repoCard);
                 });
             })
             .catch((error) => {
                 console.error("Error fetching GitHub repositories:", error);
-                projectsList.innerHTML = "<p>Unable to fetch GitHub repositories.</p>";
+                projectsList.innerHTML = "<p>Unable to fetch GitHub repositories at this time.</p>";
             });
     </script>
 </body>
