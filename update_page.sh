@@ -3,7 +3,9 @@ PROJECT_DIR="$HOME/llorella.github.io"
 
 # user runs LLT=1 ./update_page.sh
 if [ "$LLT" -eq 1 ]; then
-    llt --non_interactive -l improve_homepage_demo.ll -f $PROJECT_DIR/index.html -p "Change the main colors to black and white" | md -n 1 -f "index.html" > $PROJECT_DIR/index.html
+    llt --non_interactive -l improve_homepage_demo.ll -f $PROJECT_DIR/index.html \ 
+    -p "Change the main colors to black and white" \
+    | md -n 1 -f "index.html" > $PROJECT_DIR/index.html
 fi
 # Load the current state of the page and running ll context with specific system instructions non-interactively. 
 # Pipe output to md,  extract the first code block with heading index.html, and write output to index.html.
