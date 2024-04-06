@@ -1,7 +1,7 @@
 #!/bin/bash
 PROJECT_DIR="$HOME/llorella.github.io"
 HTML_FILE="$PROJECT_DIR/index.html"
-TEMP_FILE="$PROJECT_DIR/index.html.tmp"
+TEMP_FILE="$HTML_FILE.tmp"
 
 # user runs LLT=1 ./update_page.sh
 if [ "$LLT" = "1" ]; then
