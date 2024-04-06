@@ -78,6 +78,15 @@
             border-left: 3px solid #333;
             padding: 5px;
         }
+        .bash-command {
+            color: #00a000; /* Green for commands */
+        }
+        .bash-comment {
+            color: #999; /* Grey for comments */
+        }
+        .bash-variable {
+            color: #d14; /* Red for variables */
+        }
     </style>
 </head>
 <body>
@@ -106,10 +115,9 @@
         </section>
         <section id="last-updated">
             <h2>Last Updated</h2>
-            <p id="update-time">Last updated on: 2024-04-06 00:57:31</p>
+            <p id="update-time">Last updated on: 2024-04-06 00:59:23</p>
             <h3>update_page.sh:</h3>
-            <pre id="bash-script-content"><code>
-            </code></pre>
+            <pre id="bash-script-content"></pre>
         </section>
     </main>
     <footer>
@@ -153,11 +161,14 @@
         fetch('update_page.sh')
             .then(response => response.text())
             .then(text => {
-                const sanitizedContent = text
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')
-                    .replace(/&/g, '&amp;'); 
-                document.getElementById('bash-script-content').innerHTML = `<code>${sanitizedContent}</code>`;
+                const highlightSyntax = text
+                    .split("\n")
+                    .map(line => line.replace(/^#(.+)/g, '<span class="bash-comment">#$1</span>') // Highlight comments
+                        .replace(/(^|\s)(\$[\w]+)/g, '$1<span class="bash-variable">$2</span>') // Highlight variables
+                        .replace(/^(\w+)(\s+.+)/g, '<span class="bash-command">$1</span>$2')) // Highlight commands
+                    .join("\n");
+
+                document.getElementById('bash-script-content').innerHTML = highlightSyntax;
             })
             .catch(error => {
                 console.error('Error fetching the bash script:', error);
