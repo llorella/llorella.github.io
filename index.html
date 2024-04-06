@@ -115,7 +115,7 @@
         </section>
         <section id="last-updated">
             <h2>Last Updated</h2>
-            <p id="update-time">Last updated on: 2024-04-06 01:09:43</p>
+            <p id="update-time">Last updated on: 2024-04-06 01:10:25</p>
             <h3>update_page.sh:</h3>
             <pre id="bash-script-content"></pre>
         </section>
@@ -163,9 +163,9 @@
             .then(text => {
                 const highlightSyntax = text
                     .split("\n")
-                    .map(line => line.replace(/^#(.+)/g, '<span class="bash-comment">#$1</span>') // Highlight comments
-                        .replace(/(^|\s)(\$[\w]+)/g, '$1<span class="bash-variable">$2</span>') // Highlight variables
-                        .replace(/^(\w+)(\s+.+)/g, '<span class="bash-command">$1</span>$2')) // Highlight commands
+                    .map(line => line.replace(/^#(.+)/g, '<span class="bash-comment">#$1</span>')
+                        .replace(/(^|\s)(\$[\w]+)/g, '$1<span class="bash-variable">$2</span>') 
+                        .replace(/^(\w+)(\s+.+)/g, '<span class="bash-command">$1</span>$2')) 
                     .join("\n");
 
                 document.getElementById('bash-script-content').innerHTML = highlightSyntax;
