@@ -4,10 +4,8 @@ HTML_FILE="$PROJECT_DIR/index.html"
 TEMP_FILE="$PROJECT_DIR/index.html.tmp"
 
 # user runs LLT=1 ./update_page.sh
-if [ "$LLT" -eq 1 ]; then
-    llt --non_interactive -l improve_homepage.ll -f $HTML_FILE \ 
-    -p "Add syntax highlighting for content of bash-script-content component." \
-    | md > $HTML_FILE
+if [ "$LLT" = "1" ]; then
+    llt --non_interactive -l improve_homepage.ll -f $HTML_FILE -p "Add syntax highlighting for content of bash-script-content component." | md > $HTML_FILE
 fi
 # Load the current state of the page and running ll context with specific system instructions non-interactively. 
 # Pipe output to md,  extract the first code block with heading index.html, and write output to index.html.
