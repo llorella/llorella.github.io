@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ll home</title>
+    <title>ll</title>
     <style>
         body {
             font-family: 'Courier New', monospace;
@@ -79,13 +79,13 @@
             padding: 5px;
         }
         .bash-command {
-            color: #00a000; /* Green for commands */
+            color: #00a000;
         }
         .bash-comment {
-            color: #999; /* Grey for comments */
+            color: #999; 
         }
         .bash-variable {
-            color: #d14; /* Red for variables */
+            color: #d14;
         }
     </style>
 </head>
@@ -95,7 +95,7 @@
     </header>
     <nav>
         <ul>
-            <li><a href="#about">About</a></li>
+            <li><a href="#about">About Me</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -103,7 +103,9 @@
     <main>
         <section id="about">
             <h2>About Me</h2>
-            <p>My name is Luciano Orellana, aka llorella on GitHub. I'm a programmer interested in machine learning and systems engineering. I've worked professionally in sofware for 4 years, through full time employment and contract work. Right now, I'm studying ML by implementation and troves of Untitled(N->infinity).ipynb notebooks. I'm also developing my own day to day suite of tools, including `llt` (linked below), which I used to generate this web page via a one line bash command.</p>
+            <p>My name is Luciano Orellana, aka llorella on GitHub. I'm a programmer interested in machine learning and systems engineering. I've worked professionally in sofware for 4 years (combo of full time employment and contract work). Right now, I'm focused on improving my ml skills through code implementations of important papers (CNN, transformers, etc). I'm also developing my own day to day suite of tools, including `llt` (linked below), which I used to initialize this web page via a bash one liner.
+            <code>llt --non_interactive -l llt_home.ll -f index.html -p "$(cat ZERO_SHOT_PROMPT_HOME_LLT.txt)" | <a href="https://github.com/llorella/md">md</a> > index.html && git add . && git commit -m "Initial commit" && git push</code>
+            Also make sure to verify the time of last update and build script run at the bottom of the page.</p>
         </section>
         <section id="projects">
             <h2>Projects</h2>
@@ -116,7 +118,7 @@
         <section id="last-updated">
             <h2>Last Updated</h2>
             <p id="update-time">Last updated on: 2024-04-06 01:14:54</p>
-            <h3><a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">update_page.sh:</a></h3>
+            <h3>running <a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">./update_page.sh:</a></h3>
             <pre id="bash-script-content"></pre>
         </section>
     </main>
@@ -124,34 +126,37 @@
         &copy; 2024 Luciano Orellana. All rights reserved.
     </footer>
     <script>
+        const pages_repo = "llorella.github.io"
         const projectsList = document.getElementById("projects-list");
         fetch("https://api.github.com/users/llorella/repos")
             .then((response) => response.json())
             .then((repos) => {
-                repos.forEach((repo) => {
-                    const repoCard = document.createElement("div");
-                    repoCard.classList.add("project-card");
+                if (repos.name !== pages_repo) {
+                    repos.forEach((repo) => {
+                        const repoCard = document.createElement("div");
+                        repoCard.classList.add("project-card");
 
-                    const repoName = document.createElement("h3");
-                    const repoLink = document.createElement("a");
+                        const repoName = document.createElement("h3");
+                        const repoLink = document.createElement("a");
 
-                    repoLink.href = repo.html_url;
-                    repoLink.innerText = repo.name;
-                    repoLink.style.color = "#333";
-                    repoName.appendChild(repoLink);
-                    repoCard.appendChild(repoName);
+                        repoLink.href = repo.html_url;
+                        repoLink.innerText = repo.name;
+                        repoLink.style.color = "#333";
+                        repoName.appendChild(repoLink);
+                        repoCard.appendChild(repoName);
 
-                    const repoDescription = document.createElement("p");
-                    repoDescription.innerText = repo.description || "No description provided.";
-                    repoCard.appendChild(repoDescription);
+                        const repoDescription = document.createElement("p");
+                        repoDescription.innerText = repo.description || "No description provided.";
+                        repoCard.appendChild(repoDescription);
 
-                    const repoLanguage = document.createElement("div");
-                    repoLanguage.classList.add("project-language");
-                    repoLanguage.innerText = `Language: ${repo.language || "Not specified"}`;
-                    repoCard.appendChild(repoLanguage);
+                        const repoLanguage = document.createElement("div");
+                        repoLanguage.classList.add("project-language");
+                        repoLanguage.innerText = `Language: ${repo.language || "Not specified"}`;
+                        repoCard.appendChild(repoLanguage);
 
-                    projectsList.appendChild(repoCard);
-                });
+                        projectsList.appendChild(repoCard);
+                    });
+                }
             })
             .catch((error) => {
                 console.error("Error fetching GitHub repositories:", error);
