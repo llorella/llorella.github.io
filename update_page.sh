@@ -6,8 +6,7 @@ TEMP_FILE="$HTML_FILE.tmp"
 # user runs LLT=1 ./update_page.sh
 if [ "$LLT" = "1" ]; then
     llt --non_interactive -l improve_homepage.ll -f $HTML_FILE\
-    -p "Preface the About Me text section with the snippet and code block about how this site was generated with llt. \
-    Also, make it so that the repo titled llorella.github.io is shown last in the Projects section." | 
+    -p "Preface the About Me text section with the snippet and code block about how this site was generated with llt. Also, make it so that the repo titled llorella.github.io is shown last in the Projects section." | 
     md > $HTML_FILE
 fi
 # Load the current state of the page and running ll context with specific system instructions non-interactively. 
