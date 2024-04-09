@@ -91,7 +91,7 @@
 </head>
 <body>
     <header>
-        <h1>luciano's home page</h1>
+        <h1>Luciano Orellana</h1>
     </header>
     <nav>
         <ul>
@@ -101,12 +101,16 @@
         </ul>
     </nav>
     <main>
+        <section id="llt">
+            I used my tool <a href="https://github.com/llorella/llt">llt</a> to initialize this web page with the following bash command:
+            <code>llt -l llt_home.ll -f index.html -p "$(cat ZERO_SHOT_PROMPT_HOME_LLT.txt)" | <a href="https://github.com/llorella/md">md</a> > index.html && git add . && git commit -m "Initial commit" && git push</code>
+            You can verify the time of last update below. The corresponding build script is also available at the bottom of the page.
+            <h2>Last Updated</h2>
+            <p id="update-time">Last updated on: 2024-04-09 02:49:05</p>
+        </section>
         <section id="about">
             <h2>About Me</h2>
-            <p>My name is Luciano, aka llorella on GitHub. I'm a programmer interested in machine learning and systems engineering. I've worked professionally in sofware for 4 years (combo of full time employment and contract work). Right now, I'm focused on improving my ml skills through code implementations of important papers (RNN's, CNN's, Attention, etc.) with different frameworks (PyTorch, tinygrad). I'm also developing my own day to day suite of tools, and trying to engineer better workflows for myself and others. Most, if not all, of my time is spent working on UNIX-like systems. 
-            I used my tool `llt` to initialize this web page with the following command: 
-            <code><a href="https://github.com/llorella/llt">llt</a> --non_interactive -l llt_home.ll -f index.html -p "$(cat ZERO_SHOT_PROMPT_HOME_LLT.txt)" | <a href="https://github.com/llorella/md">md</a> > index.html && git add . && git commit -m "Initial commit" && git push</code>
-            You can verify the time of last update and build script at the bottom of the page.</p>
+            <p>My name is Luciano, aka llorella on GitHub. I'm a programmer interested in machine learning and systems engineering. I've worked professionally in sofware for 4 years (combo of full time employment and contract work). Right now, I'm focused on improving my ml skills through code implementations of important papers (RNN's, CNN's, Attention, etc.) with different frameworks (PyTorch, tinygrad). I'm also developing my own day to day suite of tools, and trying to engineer better workflows for myself and others. Most, if not all, of my time is spent working on UNIX-like systems.</p>
         </section>
         <section id="projects">
             <h2>Projects</h2>
@@ -117,11 +121,10 @@
             <p>If you'd like to talk, feel free to email me at <a href="mailto:lucianolauro77@gmail.com">lucianolauro77@gmail.com</a>.</p>
         </section>
         <section id="last-updated">
-            <h2>Last Updated</h2>
-            <p id="update-time">Last updated on: 2024-04-08 21:51:50</p>
-            <h3>ran <a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">./update_page.sh:</a></h3>
+            <h3>Ran<a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">./update_page.sh:</a></h3>
             <pre id="bash-script-content"></pre>
         </section>
+        
     </main>
     <footer>
         &copy; 2024 Luciano Orellana. All rights reserved.
