@@ -6,7 +6,7 @@ TEMP_FILE="$HTML_FILE.tmp"
 # user runs LLT=1 ./update_page.sh
 if [ "$LLT" = "1" ]; then
     llt --non_interactive -l improve_homepage.ll -f $HTML_FILE\
-    -p "Preface the About Me text section with the snippet and code block about how this site was generated with llt." | 
+    -p "Add syntax highlighting to the bash script in the last updated section." |
     md > $HTML_FILE
 fi
 # Load the current state of the page and running ll context with specific system instructions non-interactively. 
