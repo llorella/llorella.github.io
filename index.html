@@ -118,7 +118,7 @@
         </section>
         <section id="last-updated">
             <h2>Last Updated</h2>
-            <p id="update-time">Last updated on: 2024-04-08 21:11:00</p>
+            <p id="update-time">Last updated on: 2024-04-08 21:45:43</p>
             <h3>ran <a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">./update_page.sh:</a></h3>
             <pre id="bash-script-content"></pre>
         </section>
@@ -132,8 +132,8 @@
         fetch("https://api.github.com/users/llorella/repos")
             .then((response) => response.json())
             .then((repos) => {
-                if (repos.name !== pages_repo) {
-                    repos.forEach((repo) => {
+                repos.forEach((repo) => {
+                    if (repo.name !== pages_repo) {
                         const repoCard = document.createElement("div");
                         repoCard.classList.add("project-card");
 
@@ -156,8 +156,8 @@
                         repoCard.appendChild(repoLanguage);
 
                         projectsList.appendChild(repoCard);
-                    });
-                }
+                    }
+                });
             })
             .catch((error) => {
                 console.error("Error fetching GitHub repositories:", error);
