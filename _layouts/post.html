@@ -1,0 +1,58 @@
+---
+layout: default
+---
+<article class="post">
+    <header class="post-header">
+        <h1>{{ page.title }}</h1>
+        <p class="post-meta">
+            Posted on {{ page.date | date: "%B %d, %Y" }}
+            {% if page.author %}
+                by {{ page.author }}
+            {% endif %}
+        </p>
+    </header>
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <div class="post-navigation">
+        {% if page.previous.url %}
+        <a class="prev" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
+        {% endif %}
+        {% if page.next.url %}
+        <a class="next" href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
+        {% endif %}
+    </div>
+</article>
+
+<style>
+    .post-header {
+        margin-bottom: 30px;
+    }
+    .post-header h1 {
+        margin-bottom: 10px;
+    }
+    .post-content {
+        line-height: 1.6;
+    }
+    .post-navigation {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    .post-navigation a {
+        display: inline-block;
+        padding: 10px;
+        color: #333;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    .post-navigation a:hover {
+        background: #f5f5f5;
+    }
+    .post-navigation .next {
+        float: right;
+    }
+</style>

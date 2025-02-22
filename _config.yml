@@ -1,0 +1,41 @@
+title: Luciano Orellana
+email: lucianolauro77@gmail.com
+description: >- 
+  Personal website and blog of Luciano Orellana (llorella)
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://llorella.github.io" 
+github_username: llorella
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - update_page.sh
+  - .gitignore
+  - README.md
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"

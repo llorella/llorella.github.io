@@ -1,188 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ll</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 40px;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 10px 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        section {
-            margin-bottom: 40px;
-        }
-        h2 {
-            font-size: 24px;
-            border-bottom: 2px solid #333;
-            margin-bottom: 20px;
-        }
-        pre, code {
-            background-color: #eee;
-            padding: 10px;
-            display: block;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        .project-card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .project-card h3 {
-            margin-top: 0;
-        }
-        .project-language {
-            background-color: #f0f0f0;
-            border-left: 3px solid #333;
-            padding: 5px;
-        }
-        .bash-command {
-            color: #00a000;
-        }
-        .bash-comment {
-            color: #999; 
-        }
-        .bash-variable {
-            color: #d14;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Luciano Orellana</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section id="llt">
-            I used my tool <a href="https://github.com/llorella/llt">llt</a> to initialize this web page with the following bash command:
-            <code>llt -l llt_home.ll -f index.html -p "$(cat ZERO_SHOT_PROMPT_HOME_LLT.txt)" | <a href="https://github.com/llorella/md">md</a> > index.html && git add . && git commit -m "Initial commit" && git push</code>
-            You can verify the time of last update below. The corresponding build script is also available at the bottom of the page.
-            <h2>Last Updated</h2>
-            <p id="update-time">Last updated on: 2024-06-21 12:10:12</p>
-        </section>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>My name is Luciano, aka llorella on GitHub. I'm a programmer interested in systems engineering, machine learning, UI engineering, and dev tools. I've worked professionally in sofware for 4 years in enterprise and startups. My most recent venture was building a web platform for indie musicians to access their royalties in one centralized service, and writing code for every single feature across the stack. Right now, I'm focused on improving my machine learning skills through code implementations of different architectures, and creating a suite of my own developer tools on Linux. Please feel free to each out to contact me if you'd like to chat.</p>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <div id="projects-list"></div>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>If you'd like to talk, feel free to email me at <a href="mailto:lucianolauro77@gmail.com">lucianolauro77@gmail.com</a>.</p>
-        </section>
-        <section id="last-updated">
-            <h3>Ran<a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">./update_page.sh:</a></h3>
-            <pre id="bash-script-content"></pre>
-        </section>
-        
-    </main>
-    <footer>
-        &copy; 2024 Luciano Orellana. All rights reserved.
-    </footer>
-    <script>
-        const pages_repo = "llorella.github.io"
-        const projectsList = document.getElementById("projects-list");
-        fetch("https://api.github.com/users/llorella/repos")
-            .then((response) => response.json())
-            .then((repos) => {
-                repos.forEach((repo) => {
-                    if (repo.name !== pages_repo) {
-                        const repoCard = document.createElement("div");
-                        repoCard.classList.add("project-card");
+---
+layout: default
+title: Home
+---
+<section id="llt">
+    I used my tool <a href="https://github.com/llorella/llt">llt</a> to initialize this web page with the following bash command:
+    <code>llt --load personal/homepage_improve --file index.html --prompt "Update the personal homepage with new about me excerpt located in @about_me.txt. Make sure to include the entire file in an html code block." --complete -n --review --extract html > index.html && git add . && git commit -m "Initial commit" && git push</code>
+    You can verify the time of last update below. The corresponding build script is also available at the bottom of the page.
+    <h2>Last Updated</h2>
+    <p id="update-time">Last updated on: {{ site.time | date: '%Y-%m-%d %H:%M:%S' }}</p>
+</section>
 
-                        const repoName = document.createElement("h3");
-                        const repoLink = document.createElement("a");
+<section id="about">
+    <h2>About Me</h2>
+    <p>My name is Luciano, aka llorella on GitHub, and this is my personal page. I've been a software <a href="https://github.com/llorella/llt">llt</a></p>
+</section>
 
-                        repoLink.href = repo.html_url;
-                        repoLink.innerText = repo.name;
-                        repoLink.style.color = "#333";
-                        repoName.appendChild(repoLink);
-                        repoCard.appendChild(repoName);
+<section id="projects">
+    <h2>Projects</h2>
+    <div id="projects-list"></div>
+</section>
 
-                        const repoDescription = document.createElement("p");
-                        repoDescription.innerText = repo.description || "No description provided.";
-                        repoCard.appendChild(repoDescription);
+<section id="contact">
+    <h2>Contact</h2>
+    <p>If you'd like to talk, feel free to email me at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+</section>
 
-                        const repoLanguage = document.createElement("div");
-                        repoLanguage.classList.add("project-language");
-                        repoLanguage.innerText = `Language: ${repo.language || "Not specified"}`;
-                        repoCard.appendChild(repoLanguage);
+<section id="last-updated">
+    <h3>Ran<a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">./update_page.sh:</a></h3>
+    <pre id="bash-script-content"></pre>
+</section>
 
-                        projectsList.appendChild(repoCard);
-                    }
-                });
-            })
-            .catch((error) => {
-                console.error("Error fetching GitHub repositories:", error);
-                projectsList.innerHTML = "<p>Unable to fetch GitHub repositories at this time.</p>";
+<script>
+    const pages_repo = "llorella.github.io"
+    const projectsList = document.getElementById("projects-list");
+    fetch("https://api.github.com/users/llorella/repos")
+        .then((response) => response.json())
+        .then((repos) => {
+            repos.forEach((repo) => {
+                if (repo.name !== pages_repo) {
+                    const repoCard = document.createElement("div");
+                    repoCard.classList.add("project-card");
+
+                    const repoName = document.createElement("h3");
+                    const repoLink = document.createElement("a");
+
+                    repoLink.href = repo.html_url;
+                    repoLink.innerText = repo.name;
+                    repoLink.style.color = "#333";
+                    repoName.appendChild(repoLink);
+                    repoCard.appendChild(repoName);
+
+                    const repoDescription = document.createElement("p");
+                    repoDescription.innerText = repo.description || "No description provided.";
+                    repoCard.appendChild(repoDescription);
+
+                    const repoLanguage = document.createElement("div");
+                    repoLanguage.classList.add("project-language");
+                    repoLanguage.innerText = `Language: ${repo.language || "Not specified"}`;
+                    repoCard.appendChild(repoLanguage);
+
+                    projectsList.appendChild(repoCard);
+                }
             });
+        })
+        .catch((error) => {
+            console.error("Error fetching GitHub repositories:", error);
+            projectsList.innerHTML = "<p>Unable to fetch GitHub repositories at this time.</p>";
+        });
 
-        fetch('update_page.sh')
-            .then(response => response.text())
-            .then(text => {
-                const highlightSyntax = text
-                    .split("\n")
-                    .map(line => line.replace(/^#(.+)/g, '<span class="bash-comment">#$1</span>')
-                        .replace(/(^|\s)(\$[\w]+)/g, '$1<span class="bash-variable">$2</span>') 
-                        .replace(/^(\w+)(\s+.+)/g, '<span class="bash-command">$1</span>$2')) 
-                    .join("\n");
+    fetch('update_page.sh')
+        .then(response => response.text())
+        .then(text => {
+            const highlightSyntax = text
+                .split("\n")
+                .map(line => line.replace(/^#(.+)/g, '<span class="bash-comment">#$1</span>')
+                    .replace(/(^|\s)(\$[\w]+)/g, '$1<span class="bash-variable">$2</span>') 
+                    .replace(/^(\w+)(\s+.+)/g, '<span class="bash-command">$1</span>$2')) 
+                .join("\n");
 
-                document.getElementById('bash-script-content').innerHTML = highlightSyntax;
-            })
-            .catch(error => {
-                console.error('Error fetching the bash script:', error);
-                document.getElementById('bash-script-content').innerText = 'Failed to load script content.';
-            });
-    </script>
-</body>
-</html>
+            document.getElementById('bash-script-content').innerHTML = highlightSyntax;
+        })
+        .catch(error => {
+            console.error('Error fetching the bash script:', error);
+            document.getElementById('bash-script-content').innerText = 'Failed to load script content.';
+        });
+</script>

@@ -1,21 +1,47 @@
 #!/bin/bash
-PROJECT_DIR="$HOME/llorella.github.io"
-HTML_FILE="$PROJECT_DIR/index.html"
-TEMP_FILE="$HTML_FILE.tmp"
+set -euo pipefail
 
-# user runs LLT=1 ./update_page.sh
-if [ "$LLT" = "1" ]; then
-    llt --non_interactive -l improve_homepage.ll -f $HTML_FILE\
-    -p "Add syntax highlighting to the bash script in the last updated section." |
-    md > $HTML_FILE
+# This script updates the Jekyll-based website by:
+# 1. Optionally running LLT improvements if LLT=1 is set
+# 2. Building the Jekyll site
+# 3. Committing and pushing changes to git
+
+readonly PROJECT_DIR="$HOME/llorella.github.io"
+readonly HTML_FILE="$PROJECT_DIR/index.html"
+
+# Check if required files exist
+if [[ ! -f "$HTML_FILE" ]]; then
+    echo "Error: $HTML_FILE not found"
+    exit 1
 fi
-# Load the current state of the page and running ll context with specific system instructions non-interactively. 
-# Pipe output to md,  extract the first code block with heading index.html, and write output to index.html.
 
-CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S')
-sed "s/Last updated on: .*/Last updated on: $CURRENT_DATE<\/p>/" $HTML_FILE > $TEMP_FILE
-mv $TEMP_FILE $HTML_FILE
+# Run LLT improvements if enabled
+if [[ "${LLT:-0}" == "1" ]]; then
+    echo "Running LLT improvements..."
+    if ! command -v llt &> /dev/null; then
+        echo "Error: llt command not found"
+        exit 1
+    fi
+    
+    if ! llt --non_interactive -l improve_homepage.ll -f "$HTML_FILE" \
+        -p "Add syntax highlighting to the bash script in the last updated section." | \
+        md > "$HTML_FILE.new"; then
+        echo "Error: LLT processing failed"
+        rm -f "$HTML_FILE.new"
+        exit 1
+    fi
+    mv "$HTML_FILE.new" "$HTML_FILE"
+fi
 
+# Build Jekyll site
+echo "Building Jekyll site..."
+if ! bundle exec jekyll build; then
+    echo "Error: Jekyll build failed"
+    exit 1
+fi
+
+# Add and commit changes
+echo "Committing changes..."
 git add .
-git commit -m "Site Updated on $CURRENT_DATE"
+git commit -m "Update site: $(date '+%Y-%m-%d %H:%M:%S')"
 git push

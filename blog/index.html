@@ -1,0 +1,35 @@
+---
+layout: default
+title: Blog
+---
+<h1>Latest Posts</h1>
+
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li>
+      <h2>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </h2>
+      <p class="post-meta">{{ post.date | date: "%B %d, %Y" }}</p>
+      <p>{{ post.excerpt }}</p>
+      <a href="{{ post.url }}" class="read-more">Read More &raquo;</a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if site.posts.size == 0 %}
+<p>No posts yet!</p>
+{% endif %}
+
+<style>
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+.read-more:hover {
+    text-decoration: underline;
+}
+</style>
