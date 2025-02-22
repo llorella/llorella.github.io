@@ -26,7 +26,7 @@ title: Home
 </section>
 
 <section id="last-updated">
-    <h3>Ran<a href="https://github.com/llorella/llorella.github.io/blob/main/update_page.sh">./update_page.sh:</a></h3>
+    <h3>Ran<a href="https://github.com/llorella/llorella.github.io/blob/main/assets/scripts/update_page.sh">./update_page.sh:</a></h3>
     <pre id="bash-script-content"></pre>
 </section>
 
@@ -68,7 +68,7 @@ title: Home
             projectsList.innerHTML = "<p>Unable to fetch GitHub repositories at this time.</p>";
         });
 
-    fetch('update_page.sh')
+    fetch('/assets/scripts/update_page.sh')
         .then(response => response.text())
         .then(text => {
             const highlightSyntax = text
