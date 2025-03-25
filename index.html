@@ -36,8 +36,7 @@ title: Home
     fetch("https://api.github.com/users/llorella/repos")
         .then((response) => response.json())
         .then((repos) => {
-            // Limit to first five repos
-            repos.slice(0, 5).forEach((repo) => {
+            repos.slice(0, 6).forEach((repo) => {
                 if (repo.name !== pages_repo) {
                     const repoCard = document.createElement("div");
                     repoCard.classList.add("project-card");
