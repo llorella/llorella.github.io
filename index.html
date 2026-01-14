@@ -2,17 +2,10 @@
 layout: default
 title: Home
 ---
-<section id="llt">
-    I used my tool <a href="https://github.com/llorella/llt">llt</a> to initialize this web page with the following bash command:
-    <code>llt --load personal/homepage_improve --file index.html --prompt "Update the personal homepage with new about me excerpt located in @about_me.txt. Make sure to include the entire file in an html code block." --complete -n --review --extract html > index.html && git add . && git commit -m "Initial commit" && git push</code>
-    You can verify the time of last update below. The corresponding build script is also available at the bottom of the page.
-    <h2>Last Updated</h2>
-    <p id="update-time">Last updated on: {{ site.time | date: '%Y-%m-%d %H:%M:%S' }}</p>
-</section>
-
 <section id="about">
-    <h2>About Me</h2>
-    <p>My name is Luciano, aka llorella on GitHub. I'm a software engineer focused on systems engineering, machine learning, and developer tools. After 4 years in enterprise and startups, including building a centralized royalties platform for indie musicians, I'm now working on Linux dev tools and implementing ML architectures. My interests span the full stack, from UI engineering to systems design. If you're working on something interesting, reach out.</p>
+    <h2>About</h2>
+    {% capture about_content %}{% include about.md %}{% endcapture %}
+    {{ about_content | markdownify }}
 </section>
 
 <section id="projects">
@@ -22,66 +15,5 @@ title: Home
 
 <section id="contact">
     <h2>Contact</h2>
-    <p>If you'd like to talk, feel free to email me at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+    <p>Email me at <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
 </section>
-
-<section id="last-updated">
-    <h3>Ran<a href="https://github.com/llorella/llorella.github.io/blob/main/assets/scripts/update_page.sh">./update_page.sh:</a></h3>
-    <pre id="bash-script-content"></pre>
-</section>
-
-<script>
-    const pages_repo = "llorella.github.io"
-    const projectsList = document.getElementById("projects-list");
-    fetch("https://api.github.com/users/llorella/repos")
-        .then((response) => response.json())
-        .then((repos) => {
-            repos.slice(0, 6).forEach((repo) => {
-                if (repo.name !== pages_repo) {
-                    const repoCard = document.createElement("div");
-                    repoCard.classList.add("project-card");
-
-                    const repoName = document.createElement("h3");
-                    const repoLink = document.createElement("a");
-
-                    repoLink.href = repo.html_url;
-                    repoLink.innerText = repo.name;
-                    repoLink.style.color = "#333";
-                    repoName.appendChild(repoLink);
-                    repoCard.appendChild(repoName);
-
-                    const repoDescription = document.createElement("p");
-                    repoDescription.innerText = repo.description || "No description provided.";
-                    repoCard.appendChild(repoDescription);
-
-                    const repoLanguage = document.createElement("div");
-                    repoLanguage.classList.add("project-language");
-                    repoLanguage.innerText = `Language: ${repo.language || "Not specified"}`;
-                    repoCard.appendChild(repoLanguage);
-
-                    projectsList.appendChild(repoCard);
-                }
-            });
-        })
-        .catch((error) => {
-            console.error("Error fetching GitHub repositories:", error);
-            projectsList.innerHTML = "<p>Unable to fetch GitHub repositories at this time.</p>";
-        });
-
-    fetch('/assets/scripts/update_page.sh')
-        .then(response => response.text())
-        .then(text => {
-            const highlightSyntax = text
-                .split("\n")
-                .map(line => line.replace(/^#(.+)/g, '<span class="bash-comment">#$1</span>')
-                    .replace(/(^|\s)(\$[\w]+)/g, '$1<span class="bash-variable">$2</span>') 
-                    .replace(/^(\w+)(\s+.+)/g, '<span class="bash-command">$1</span>$2')) 
-                .join("\n");
-
-            document.getElementById('bash-script-content').innerHTML = highlightSyntax;
-        })
-        .catch(error => {
-            console.error('Error fetching the bash script:', error);
-            document.getElementById('bash-script-content').innerText = 'Failed to load script content.';
-        });
-</script>

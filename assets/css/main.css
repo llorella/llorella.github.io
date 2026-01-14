@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #6b6b6b;
+    --accent: #e85d04;
+    --accent-hover: #dc2f02;
+    --border: #e5e5e5;
+    --code-bg: #f5f5f4;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, sans-serif;
+    font-weight: 400;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header - bold, offset, memorable */
+header {
+    padding: 80px 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    position: relative;
+}
+
+header h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 6px;
+    background: var(--accent);
+    margin-top: 20px;
+}
+
+/* Navigation - minimal, functional */
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 40px;
+    border-bottom: 1px solid var(--border);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 32px;
+}
+
+nav ul li a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent);
+}
+
+/* Main content - asymmetric grid */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+/* Sections */
+section {
+    margin-bottom: 100px;
+}
+
+section:last-child {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin: 0 0 24px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* About section - larger, more presence */
+#about p {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    max-width: 680px;
+    color: var(--text);
+    font-weight: 300;
+}
+
+#about strong, #about a {
+    font-weight: 600;
+}
+
+#about a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+#about a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* Projects - card grid with character */
+#projects-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover::before {
+    transform: scaleY(1);
+    transform-origin: top;
+}
+
+.project-card h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+
+.project-card h3 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.project-card h3 a:hover {
+    color: var(--accent);
+}
+
+.project-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+.project-language {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--code-bg);
+    padding: 4px 10px;
+    display: inline-block;
+    letter-spacing: 0.05em;
+}
+
+/* Contact - simple but styled */
+#contact p {
+    font-size: 1rem;
+}
+
+#contact a {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+    transition: background 0.2s ease;
+}
+
+#contact a:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* Footer - understated */
+footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+footer .last-updated {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+}
+
+/* Blog styles */
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-list li {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+}
+
+.post-list li:last-child {
+    border-bottom: none;
+}
+
+.post-list h3 {
+    font-size: 1.5rem;
+    margin: 0 0 8px 0;
+}
+
+.post-list h3 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-list h3 a:hover {
+    color: var(--accent);
+}
+
+.post-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+/* Code blocks */
+pre, code {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--code-bg);
+    font-size: 0.85rem;
+}
+
+pre {
+    padding: 20px;
+    overflow-x: auto;
+    border-left: 3px solid var(--accent);
+}
+
+code {
+    padding: 2px 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
+    header {
+        padding: 50px 24px 40px;
+    }
+
+    nav {
+        padding: 0 24px 30px;
+    }
+
+    nav ul {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    main {
+        padding: 40px 24px;
+    }
+
+    section {
+        margin-bottom: 60px;
+    }
+
+    #projects-list {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 30px 24px;
+    }
+}
