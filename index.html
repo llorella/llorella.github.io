@@ -4,96 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luciano Orellana</title>
-    <meta name="description" content="Personal website of Luciano Orellana">
-    <meta property="og:title" content="Luciano Orellana">
-    <meta property="og:description" content="Personal website of Luciano Orellana">
-    <meta property="og:url" content="https://llorella.github.io">
-    <meta property="og:site_name" content="Luciano Orellana">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Luciano Orellana">
-    <meta name="twitter:description" content="Personal website of Luciano Orellana">
     <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="/assets/css/main.css">
-    <script>
-    (function() {
-        var theme = localStorage.getItem('theme');
-        if (!theme) {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    })();
-    </script>
 </head>
 <body>
-    <header>
-        <h1>Luciano Orellana</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#about" class="active">about</a></li>
-            <li><a href="#now">now</a></li>
-            <li><a href="#projects">projects</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ul>
-        <button id="theme-toggle" aria-label="Toggle dark mode">&#9789;</button>
-    </nav>
-    <main>
-        <section id="about">
-            <h2>About</h2>
-            <div id="about-content">
-                <div class="skeleton-line text"></div>
-                <div class="skeleton-line text"></div>
-                <div class="skeleton-line text short"></div>
-            </div>
-        </section>
-
-        <section id="now">
-            <h2>Now</h2>
-            <div id="now-content">
-                <div class="skeleton-line text"></div>
-                <div class="skeleton-line text short"></div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2>Projects</h2>
-            <div id="projects-list">
-                <div class="skeleton-card">
-                    <div class="skeleton-line title"></div>
-                    <div class="skeleton-line text"></div>
-                    <div class="skeleton-line text short"></div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="skeleton-line title"></div>
-                    <div class="skeleton-line text"></div>
-                    <div class="skeleton-line text short"></div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="skeleton-line title"></div>
-                    <div class="skeleton-line text"></div>
-                    <div class="skeleton-line text short"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <div id="contact-content">
-                <div class="skeleton-line text"></div>
-                <div class="skeleton-line text short"></div>
-            </div>
-        </section>
-    </main>
+    <h1>Luciano Orellana</h1>
+    <div id="about"></div>
+    <div id="now"></div>
+    <div id="projects"></div>
+    <div id="contact"></div>
     <footer>
-        <div>&copy; 2026 Luciano Orellana</div>
-        <div class="footer-links" id="footer-links">
-            <a href="https://github.com/llorella">github</a>
-            &middot;
-            <a href="mailto:lucianolauro77@gmail.com">email</a>
-        </div>
+        This site is powered by my <a href="https://personal-api.lucianolauro77.workers.dev">personal API</a>.
+        &middot; <a href="https://github.com/llorella">github</a>
     </footer>
     <script src="/assets/js/main.js"></script>
 </body>
