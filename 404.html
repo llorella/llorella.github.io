@@ -1,31 +1,52 @@
----
-layout: page
-title: "404: Page Not Found"
-permalink: /404.html
----
-
-<div class="error-page">
-    <h2>Oops! The page you're looking for doesn't exist.</h2>
-    <p>You may have mistyped the address or the page may have moved.</p>
-    <p><a href="/">Go back to homepage</a></p>
-</div>
-
-<style>
-    .error-page {
-        text-align: center;
-        padding: 50px 0;
-    }
-    .error-page h2 {
-        color: #333;
-        margin-bottom: 20px;
-    }
-    .error-page a {
-        color: #333;
-        text-decoration: none;
-        border-bottom: 2px solid #333;
-    }
-    .error-page a:hover {
-        color: #666;
-        border-color: #666;
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Luciano Orellana</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script>
+    (function() {
+        var theme = localStorage.getItem('theme');
+        if (!theme) {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Luciano Orellana</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/#about">about</a></li>
+            <li><a href="/#now">now</a></li>
+            <li><a href="/#projects">projects</a></li>
+            <li><a href="/#contact">contact</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9789;</button>
+    </nav>
+    <main>
+        <div class="error-page">
+            <div class="error-code">404</div>
+            <h2>The page you're looking for doesn't exist.</h2>
+            <p>You may have mistyped the address or the page may have moved.</p>
+            <p><a href="/">Back to homepage</a></p>
+        </div>
+    </main>
+    <footer>
+        <div>&copy; 2026 Luciano Orellana</div>
+        <div class="footer-links">
+            <a href="https://github.com/llorella">github</a>
+            &middot;
+            <a href="mailto:lucianolauro77@gmail.com">email</a>
+        </div>
+    </footer>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
