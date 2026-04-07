@@ -30,19 +30,31 @@ Promise.allSettled([
     box.appendChild(meta);
   }),
 
-  load("/now").then(function(d) {
-    var box = el("now");
-    box.appendChild(h("h2", "now"));
-    box.appendChild(h("p", d.now.focus));
-    if (d.now.building) {
-      box.appendChild(h("p", "building: " + d.now.building.join(", ")));
+  load("/interests").then(function(d) {
+    var box = el("interests");
+    box.appendChild(h("h2", "interests"));
+
+    // books
+    var books = h("p", "reading: " + d.books.favorites.join(", "));
+    box.appendChild(books);
+    if (d.books.currently_reading) {
+      var cur = h("p", "currently: " + d.books.currently_reading);
+      cur.className = "meta";
+      box.appendChild(cur);
     }
-    if (d.now.exploring) {
-      box.appendChild(h("p", "exploring: " + d.now.exploring.join(", ")));
+
+    // chess
+    var chess = h("p");
+    chess.appendChild(document.createTextNode("chess: "));
+    chess.appendChild(link(d.chess.lichess, d.chess.lichess.split("/@/")[1]));
+    chess.appendChild(document.createTextNode(" — favorite opening: "));
+    chess.appendChild(link(d.chess.favorite_opening.url, d.chess.favorite_opening.name));
+    box.appendChild(chess);
+
+    // math
+    if (d.math) {
+      box.appendChild(h("p", "math: " + d.math));
     }
-    var meta = h("p", "updated " + d.now.updated);
-    meta.className = "meta";
-    box.appendChild(meta);
   }),
 
   load("/projects").then(function(d) {
