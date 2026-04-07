@@ -57,6 +57,19 @@ Promise.allSettled([
     }
   }),
 
+  load("/uses").then(function(d) {
+    var box = el("uses");
+    box.appendChild(h("h2", "uses"));
+    var items = [
+      "editor: " + d.editor,
+      "terminal: " + d.terminal,
+      "multiplexer: " + d.multiplexer,
+      "os: " + d.os,
+      "agents: " + d.ai.join(", "),
+    ];
+    box.appendChild(h("p", items.join(" · ")));
+  }),
+
   load("/projects").then(function(d) {
     var box = el("projects");
     box.appendChild(h("h2", "projects"));
