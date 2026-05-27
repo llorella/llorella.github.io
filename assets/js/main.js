@@ -24,10 +24,11 @@ Promise.allSettled([
     var box = el("about");
     box.appendChild(h("h2", "about"));
     box.appendChild(h("p", d.bio));
-    box.appendChild(h("p", d.role + " — " + d.location));
-    var meta = h("p", d.languages.join(", "));
-    meta.className = "meta";
-    box.appendChild(meta);
+    if (d.interests && d.interests.length) {
+      var meta = h("p", "interests: " + d.interests.join(", "));
+      meta.className = "meta";
+      box.appendChild(meta);
+    }
   }),
 
   load("/interests").then(function(d) {
@@ -35,12 +36,10 @@ Promise.allSettled([
     box.appendChild(h("h2", "interests"));
 
     // books
-    var books = h("p", "reading: " + d.books.favorites.join(", "));
-    box.appendChild(books);
-    if (d.books.currently_reading) {
-      var cur = h("p", "currently: " + d.books.currently_reading);
-      cur.className = "meta";
-      box.appendChild(cur);
+    var pastReading = d.books.past_reading || [];
+    if (pastReading.length) {
+      var books = h("p", "past reading: " + pastReading.join(", "));
+      box.appendChild(books);
     }
 
     // chess
@@ -83,11 +82,6 @@ Promise.allSettled([
       ul.appendChild(li);
     });
     box.appendChild(ul);
-    if (d.github) {
-      var p = h("p");
-      p.appendChild(link(d.github, "all repos →"));
-      box.appendChild(p);
-    }
   }),
 
   load("/contact").then(function(d) {
